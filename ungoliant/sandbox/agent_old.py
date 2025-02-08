@@ -1,4 +1,4 @@
-from helpers import polygon as pg
+from ungoliant.helpers import polygon as pg
 
 # apple = pg.get_close_on_date("2021-01-04",ticker="AAPL")
 # print(apple)
@@ -19,7 +19,7 @@ class ClosePriceInput(BaseModel):
 
 def get_close_price(ticker, date):
     print('executing close price')
-    data = pg.get_close_on_date(date, ticker=ticker)
+    data = pg.PolygonClient().get_open_close(date, ticker)#.get_close_on_date(date, ticker=ticker)
     print(data)
     return data
 

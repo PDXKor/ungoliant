@@ -1,5 +1,6 @@
 import logging
 from typing import Optional, Dict, Any
+import os
 
 class LoggingMixin:
     """
@@ -27,6 +28,15 @@ class LoggingMixin:
 
             # File handler (if specified)
             if log_file:
+                
+                # Check if there is a log dir
+                parent_dir = os.path.dirname(os.path.abspath(__file__))
+                gp_dir = os.path.dirname(parent_dir)
+                logs_dir = os.path.join(gp_dir, 'logs')
+
+                if not os.path.exists(logs_dir):
+                    os.makedirs(logs_dir)
+
                 file_handler = logging.FileHandler(log_file)
                 file_handler.setFormatter(formatter)
                 self.logger.addHandler(file_handler)

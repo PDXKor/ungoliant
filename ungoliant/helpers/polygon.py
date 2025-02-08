@@ -53,7 +53,7 @@ class PolygonClient(LoggingMixin):
         :param date: str - the date formatted as YYYY-MM-DD
 
         Returns:
-            Last close price
+            A response in the form of a dictionary. 
         """
         url = f'{self.base_url}open-close/{ticker}/{date}'     
         response = self.make_request(url)
@@ -61,7 +61,7 @@ class PolygonClient(LoggingMixin):
         close = float(response['close'])
         open = float(response['open'])
         
-        return {"close": close, "open": open}
+        return response #{#"close": close, "open": open}
 
 
 
