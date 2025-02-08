@@ -2,16 +2,21 @@ from ungoliant.helpers.polygon import PolygonClient
 from langchain_core.tools import BaseTool, StructuredTool
 from pydantic import BaseModel, Field
 
+pg = PolygonClient()
+
 #---------------------------------------------------------
 
 class OpenClosePriceInput(BaseModel):
     ticker: str = Field(description="The stock symbol of the company to get open and close price for on a specific date.")
     date: str = Field(description="The date to get the close price for - the format must be YYYY-MM-DD")
 
+def get_open_close_price(ticker: str, date: str):
+    return pg.get_open_close(ticker=ticker, date=date)
+
 close_price_tool = StructuredTool(name="Get Stock Open and Close Price",
                                   args_schema=OpenClosePriceInput,
                                   description='Get the open and close price of a stock on a given date.',
-                                  func=PolygonClient().get_open_close)
+                                  func=get_open_close_price)
 
 #---------------------------------------------------------
 
