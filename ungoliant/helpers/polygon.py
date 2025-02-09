@@ -62,8 +62,27 @@ class PolygonClient(LoggingMixin):
         open = float(response['open'])
         
         return response #{#"close": close, "open": open}
+    
+    def get_financials(self, ticker:str) -> Dict[str, Any]:
+        """
+        Gets the financials for a stock for the last four years.
+
+        :param ticker: str - the stock symbol
+
+        Returns:
+            A response in the form of a dictionary. 
+        """
+        url = f'https://api.polygon.io/vX/reference/financials?ticker={ticker}&timeframe=annual&limit=4&sort=filing_date'     
+        response = self.make_request(url)
+
+        return response
 
 
 
 if __name__ == "__main__":
-    print(PolygonClient().get_open_close("2021-01-04",ticker="AAPL"))
+    #print(PolygonClient().get_open_close("2021-01-04",ticker="AAPL"))
+    results = PolygonClient().get_financials(ticker="AAPL")
+    for r in results['results']:
+        #print(r)
+        print(r['tickers'])
+        print(r['start_date'],r['end_date'])
