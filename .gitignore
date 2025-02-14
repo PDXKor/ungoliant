@@ -7,3 +7,4 @@ ungoliant/.vscode/launch.json
 .vscode/launch.json
 ungoliant/__pycache__/
 ungoliant/__pycache__/graph.cpython-313.pyc
+*.egg-info/
