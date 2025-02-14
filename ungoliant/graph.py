@@ -55,8 +55,10 @@ def get_graph(plot_graph=False):
     graph_builder.add_node("curate", curate_response)
 
     # define edges
-    graph_builder.add_conditional_edges("chatbot", tools_condition)
-    graph_builder.add_edge("tools", "curate")
+    graph_builder.add_conditional_edges("chatbot", tools_condition, {"tools": "tools", END: END})
+    #graph_builder.add_conditional_edges(tools_condition, "chatbot")
+    #graph_builder.add_edge("chatbot", "curate")
+    graph_builder.add_edge("tools","chatbot")
     graph_builder.add_edge("curate", END)
     graph_builder.add_edge(START, "chatbot")
 
@@ -66,3 +68,6 @@ def get_graph(plot_graph=False):
         pg.plot_graph(graph)
 
     return graph
+
+if __name__ == "__main__":
+    get_graph(plot_graph=True)

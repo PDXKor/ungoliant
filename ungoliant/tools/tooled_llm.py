@@ -1,13 +1,17 @@
 from langgraph.prebuilt import ToolNode, tools_condition
 import helpers.polygon as polygon
+import helpers.dates as dates
 from langchain_openai import ChatOpenAI 
 from dotenv import load_dotenv 
 
+
 pgc = polygon.PolygonClient()
 
+
 def get_tools():
-    tools = [pgc.get_open_close, pgc.get_financials]
+    tools = [pgc.get_open_close, pgc.get_financials, dates.get_current_date]
     return tools
+
 
 def get_llm_with_tools():
     tools = get_tools()

@@ -10,6 +10,7 @@ from Tolkien's legendarium.
 import sys
 import graph as gp
 import agent as ag
+import argparse
 
 def print_banner():
     
@@ -25,11 +26,8 @@ def print_banner():
 
     title = "UNGOLIANT (/ʊŋˈɡoʊliənt/)"
     blurb = (
-        "Inspired by Ungoliant, the dark and ancient spider of Middle-earth,\n"
-        "whose insatiable hunger consumed every glimmer of light and knowledge, \n"
-        "this tool scours an immense web of stock market data to devour your queries \n"
-        "and reveal hidden insights. Embrace the hunger for truth and let Ungoliant feed \n"
-        "your relentless curiosity. Type 'exit' or 'quit' to leave.\n"
+        "\n\n An agentic graph based application for investment information.\n\n"+
+        "Based on the Tolken's ancient spider who sought to consume all knowledge and light.\n\n"
     )
     
     border = "=" * 80
@@ -46,10 +44,21 @@ def print_banner():
 
 def main():
     """Main interactive loop for the command line interface."""
+    
+    # Argument parsing
+    parser = argparse.ArgumentParser(description="Ungoliant: A graph-based CLI tool.")
+    parser.add_argument(
+        '--verbose', 
+        action='store_true', 
+        help="Show's tool execution details."
+    )
+    args = parser.parse_args()
+    
+    # Set up logging based on verbosity flag
     print_banner()
     print("Type your query below. (Type 'exit' or 'quit' to exit)\n")
     
-    while True:
+    while True: 
         try:
             user_input = input(">> ").strip()
             if user_input.lower() in {"exit", "quit"}:
@@ -58,12 +67,13 @@ def main():
             if not user_input:
                 continue
             
-            answer = ag.single_answer(user_input)
+            answer = ag.single_answer(user_input, verbose=args.verbose)
             print("\nAssistant: " + answer + "\n")
         
         except KeyboardInterrupt:
             print("\n\nInterrupted by user. Exiting Ungoliant. Goodbye!")
             break
+        
         except Exception as e:
             print(f"\nAn error occurred: {e}\n")
 

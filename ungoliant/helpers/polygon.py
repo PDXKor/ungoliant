@@ -27,8 +27,10 @@ class PolygonClient(LoggingMixin):
         else:
             self.base_url = base_url
 
-        super().__init__(logger_name="PolygonLog", log_file="ungoliant/logs/polygon.log")
+        log_file_path = os.path.join(os.path.dirname(__file__),"..","logs","polygon.log")
+        super().__init__(logger_name="PolygonLog", log_file=log_file_path)
 
+    
     def make_request(self, url, params:Optional[Dict[str, Any]] = None) -> Any:
         """Calls polygon API and returns the response"""
         if not params:
@@ -63,6 +65,7 @@ class PolygonClient(LoggingMixin):
         
         return response #{#"close": close, "open": open}
     
+    
     def get_financials(self, ticker:str) -> Dict[str, Any]:
         """
         Gets the financials for a stock for the last four years.
@@ -80,9 +83,12 @@ class PolygonClient(LoggingMixin):
 
 
 if __name__ == "__main__":
-    #print(PolygonClient().get_open_close("2021-01-04",ticker="AAPL"))
-    results = PolygonClient().get_financials(ticker="AAPL")
-    for r in results['results']:
-        #print(r)
-        print(r['tickers'])
-        print(r['start_date'],r['end_date'])
+    print(PolygonClient().get_open_close("2021-01-04",ticker="AAPL"))
+    print(PolygonClient().get_open_close("2025-02-12",ticker="AAPL"))
+    # results = PolygonClient().get_financials(ticker="AAPL")
+    # for r in results['results']:
+    #     #print(r)
+    #     print(r['tickers'])
+    #     print(r['start_date'],r['end_date'])
+
+        # "arguments": "{\"date\":\"2025-02-12\",\"ticker\":\"AAPL\"}",
