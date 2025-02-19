@@ -19,10 +19,13 @@ setup(
         "langgraph",
         "polygon-api-client",
         "python-dotenv",
+        "python-dateutil",
+        "pandas_market_calendars",
+        "ipython"
     ],
     entry_points={
         "console_scripts": [
-            "ungoliant=ungoliant.__main__:main",
+            "ugl=ungoliant.cli:main",
         ],
     },
 )

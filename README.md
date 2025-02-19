@@ -7,52 +7,30 @@ even the knowledge held within their light.
 Now, Ungoliant takes the form of an insatiable AI graph based agent, consuming knowledge through a web of investment driven tools.
 
 ## Usage
+Once installed, you can use the command `ugl` to start the program. After that you can ask questions directly in the CLI.
 
 ## Example Questions
 
-1. 
+1. What was Apple's stock price yesterday?
 
+```
+Assistant: The stock price of Apple (AAPL) on February 18, 2025, was as follows:
+- **Open:** $244.15
+- **High:** $245.18
+- **Low:** $241.84
+- **Close:** $244.47
+```
 
-## TODO
-    - Make logging optional, drive from .env file
-    - Support different LLMs
-    
+2. What did Apple report as their most recent annual revenue number?
+
+```
+Assistant: The most recent revenue figure for Apple Inc. (ticker: AAPL) is **$391.04 billion** for the fiscal year ending on September 30, 2024.
+```
+
 # Installation
+Install ungoliant as a package. Once installed, you will need to add a .env file to the parent dir with the following environment variables, or have the environment variables set on your machine:
 
-## With venv
-
-1. Navigate to the `ungoliant` directory (this should be the second `ungoliant` directory):
-    ```bash
-    cd ungoliant
-    ```
-
-2. Create a virtual environment:
-    ```bash
-    python -m venv venv
-    ```
-
-3. Activate the virtual environment:
-    - On Windows:
-      ```bash
-      venv\Scripts\activate
-      ```
-    - On macOS/Linux:
-      ```bash
-      source venv/bin/activate
-      ```
-
-4. Install the package in editable mode:
-    ```bash
-    pip install -e .
-    ```
-
-5. Install the required dependencies:
-    ```bash
-    pip install -r requirements.txt
-    ```
-
-6. Create a `.env` file in the root of the project directory and populate the following values:
-    - `POLYGON_API_KEY`
-    - `POLYGON_API_URL`
-    - `OPEN_API_KEY`
+- `POLYGON_API_KEY` - The API Key for the Polygon API. You can get one here: https://polygon.io/
+- `POLYGON_API_URL` - The base url for the Polygon URL you are using e.g.  `https://api.polygon.io/v1`
+- `OPEN_API_KEY` - The API key for OpenAI. Please note that you should have the model `gpt-4o-mini` enabled for your account.
 

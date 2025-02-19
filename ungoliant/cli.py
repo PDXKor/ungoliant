@@ -8,8 +8,8 @@ from Tolkien's legendarium.
 """
 
 import sys
-import graph as gp
-import agent as ag
+import ungoliant.graph as gp
+import ungoliant.agent as ag
 import argparse
 
 def print_banner():

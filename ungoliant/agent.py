@@ -1,5 +1,5 @@
 
-import graph as gp
+import ungoliant.graph as gp
 import json 
 from langchain_core.messages import AIMessage
 
